@@ -28,11 +28,13 @@
     "dependencies": {
         "body-parser": "^1.18.2",
         "bootstrap": "4.1.1",
+        "cheerio": "^1.0.0-rc.2",
         "ejs": "^2.6.1",
         "express": "^4.16.3",
         "jquery": "3.3.1",
         "jsdom": "^11.10.0",
-        "mongodb": "^3.1.0-beta4"
+        "mongodb": "^3.1.0-beta4",
+        "request": "^2.85.0"
     },
     "devDependencies": {
         "browser-sync": "2.24.3",

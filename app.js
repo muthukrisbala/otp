@@ -4,6 +4,9 @@ var bodyParser=require("body-parser");
 app.use(express.static("public"));
 app.set("view engine","ejs");
 
+var request = require('request')
+, cheerio = require('cheerio');
+
 var options = {
   useMongoClient: true
 };
@@ -25,6 +28,7 @@ app.get("/", function(req, res){
         });
       });
 });
+
 
 app.get("/admin", function(req, res){
         res.render("admin-dashboard");
