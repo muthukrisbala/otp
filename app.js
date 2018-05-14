@@ -11,23 +11,7 @@ var options = {
   useMongoClient: true
 };
 
-app.get("/", function(req, res){
 
-    var MongoClient = require('mongodb').MongoClient;
-    var url = "mongodb://localhost:27017/webmuthu";
-
-    MongoClient.connect(url, function(err, MongoClient) {
-      if (err) throw err;
-        var db = MongoClient.db("webmuthu");
-
-        db.collection("product").find({}).toArray( function(err, result){
-          if (err) throw err;
-            console.log("Result: "+result);
-          //db.close();
-          res.render("home",{result:result});
-        });
-      });
-});
 
 
 app.get("/admin", function(req, res){
@@ -55,7 +39,7 @@ app.get("/:title", function(req, res){
       });
 });
 
-app.get("/:admin/listPost", function(req, res){
+app.get("/", function(req, res){
   //  var category=req.params.category;
 
     var MongoClient = require('mongodb').MongoClient;

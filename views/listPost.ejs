@@ -23,7 +23,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand" href="#">Online Tamil Portal</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -56,25 +56,33 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-          <h1 class="my-4">Page Heading
-            <small>Secondary Text</small>
+          <h1 class="my-4">Information to Entertainment
           </h1>
 
-          <!-- Blog Post -->
-          <% for (var i=1;i<=result.length;i++) { %>
+
+<% for(var i=0;i<result.length;i++){
+  var tit=result[i].title ;
+  var url=tit.replace(/ /g,"-");
+
+  %>
           <div class="card mb-4">
-            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+            <% if(result[i].posttype=="video"){%>
+              <img class="card-img-top" src="https://img.youtube.com/vi/<%=result[i].content%>/0.jpg" alt="Card image cap">
+            <%}else{%>
+              <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+            <%}%>
             <div class="card-body">
-              <h2 class="card-title"><%=result[1].title %></h2>
-              <p class="card-text">Test content dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-              <a href="#" class="btn btn-primary">Read More &rarr;</a>
+              <h2 class="card-title"><%=result[i].title %></h2>
+
+              <a href="<%=url%>" class="btn btn-primary">Read More &rarr;</a>
             </div>
             <div class="card-footer text-muted">
-              Posted on January 1, 2017 by
-              <a href="#">Start Bootstrap</a>
+              Posted on <%=result[i].publishedon%></a> by
+              <a href=""><%=result[i].publishedby%></a>
             </div>
           </div>
-<% } %>
+<%}%>
+
 
 
           <!-- Pagination -->
