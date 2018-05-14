@@ -16,18 +16,31 @@
     <!-- Custom styles for this template -->
     <link href="css/blog-post.css" rel="stylesheet">
 
-    <meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
-    <meta property="og:type"               content="article" />
-    <meta property="og:title"              content="When Great Minds Don’t Think Alike" />
-    <meta property="og:description"        content="How much does culture influence creative thinking?" />
-    <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
 
-    <meta name="twitter:title" content="TITLE OF POST OR PAGE">
+    <% var tit=result.title ;
+    var url=tit.replace(/ /g,"-");
+    %>
+
+    <meta property="og:url"                content="http://localhost:8003/<%=url%>" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="<%=result.title%>" />
+    <meta property="og:description"        content="How much does culture influence creative thinking?" />
+    <% if(result.posttype="video") {%>
+      <meta property="og:image"              content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
+    <%}else{%>
+      <meta property="og:image"              content="test.com/0.jpg" />
+    <%}%>
+
+    <meta name="twitter:title" content="<%=result.title%>">
     <meta name="twitter:description" content="DESCRIPTION OF PAGE CONTENT">
-    <meta name="twitter:image" content="LINK TO IMAGE">
+    <% if(result.posttype="video") {%>
+      <meta property="twitter:image"              content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
+    <%}else{%>
+      <meta property="twitter:image"              content="test.com/0.jpg" />
+    <%}%>
     <meta name="twitter:site" content="@USERNAME">
     <meta name="twitter:creator" content="@USERNAME">
-    
+
   </head>
 
   <body>
