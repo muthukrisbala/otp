@@ -1,0 +1,25 @@
+db.post.insertMany([{
+title:"test post",
+content: "test Content",
+posttype:"standard",
+publishedby:"Muthu",
+publishedon:"May 14, 2018 at 11:30 PM",
+category:"test"
+},
+{
+title:"test video",
+content: "XCOto44Nypc",
+posttype:"video",
+publishedby:"Muthu",
+publishedon:"May 14, 2018 at 11:30 PM",
+category:"trailer"
+},
+{
+title:"Irumbuthirai Official Trailer Vishal Arjun Samantha Yuvan Shankar Raja Mithran",
+content: "3n3L428I8MQ",
+posttype:"video",
+publishedby:"Muthu",
+publishedon:"May 14, 2018 at 11:50 PM",
+category:"trailer"
+},
+])
