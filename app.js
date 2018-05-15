@@ -4,8 +4,6 @@ var bodyParser=require("body-parser");
 app.use(express.static("public"));
 app.set("view engine","ejs");
 
-var request = require('request')
-, cheerio = require('cheerio');
 
 var options = {
   useMongoClient: true
@@ -53,7 +51,7 @@ app.get("/", function(req, res){
           if (err) throw err;
             console.log("Result Length: "+result.length);
         //  db.close();
-          res.render("listPost",{result:result});
+          res.render("home",{result:result});
         });
       });
 });
