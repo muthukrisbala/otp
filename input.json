@@ -1,21 +1,9 @@
-db.post.insertMany([{
-title:"test post",
-content: "test Content",
-posttype:"standard",
-publishedby:"Muthu",
-publishedon:"May 14, 2018 at 11:30 PM",
-category:"test"
-},
-{
-title:"test video",
-content: "XCOto44Nypc",
-posttype:"video",
-publishedby:"Muthu",
-publishedon:"May 14, 2018 at 11:30 PM",
-category:"trailer"
-},
+db.post.insertMany([
 {
 title:"Irumbuthirai Official Trailer",
+description:"Irumbuthirai Official Trailer",
+keywords:"Irumbuthirai Official Trailer",
+img: "img",
 content: "3n3L428I8MQ",
 posttype:"video",
 publishedby:"Muthu",
@@ -23,7 +11,10 @@ publishedon:"May 14, 2018 at 11:50 PM",
 category:"trailer"
 },
 {
-title:"AALALILOO VIDEO SONG DIYA VIDEO",
+title:"Aalaliloo Video Song",
+description:"Aalaliloo Video Song",
+keywords:"Aalaliloo Video Song,Vijay",
+img: "img",
 content: "gj4Zdf5HpyU",
 posttype:"video",
 publishedby:"Muthu",
@@ -32,6 +23,9 @@ category:"trailer"
 },
 {
 title:"Mercury Movie Trailer",
+description:"Mercury Movie Trailer",
+keywords:"Mercury Movie Trailer, Prabhudeva",
+img: "img",
 content: "TeA293PMT1s",
 posttype:"video",
 publishedby:"Muthu",
@@ -40,6 +34,9 @@ category:"trailer"
 },
 {
 title:"Kaala Official Teaser",
+description:"Kaala Official Teaser",
+keywords:"Kaala Official Teaser",
+img: "img",
 content: "Wm_vSSlVsV4",
 posttype:"video",
 publishedby:"Muthu",

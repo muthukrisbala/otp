@@ -12,8 +12,8 @@ var options = {
 
 
 app.get("/sitemap.xml", function(req, res) {
-    var urlList="urls: [";
-/*  var MongoClient = require('mongodb').MongoClient;
+
+  var MongoClient = require('mongodb').MongoClient;
   var url = "mongodb://localhost:27017/onlinetamilportal";
 
   MongoClient.connect(url, function(err, MongoClient) {
@@ -26,35 +26,27 @@ app.get("/sitemap.xml", function(req, res) {
       //  db.close();
       //  res.render("home",{result:result});
 
-      for(var i=0;i<result.length;i++){
-        var url=result[i].title.replace(/ /g,"-");
-        console.log("URL: "+url);
-        urlList+="{ url: /"+url+"/,  changefreq: 'daily', priority: 0.3 },";
-      }
-      urlList+="]";
-      console.log("URL List: "+urlList);
-      });
-
-    });*/
-
-  var sitemap = sm.createSitemap ({
+      var sitemap = sm.createSitemap ({
         hostname: 'http://www.onlinetamilportal.com',
-        cacheTime: 600000,        // 600 sec - cache purge period
-        urls: [
-          { url: '/irumbuthirai-official-trailer/',  changefreq: 'daily', priority: 0.3 },
-          { url: '/mercury-movie-trailer/',  changefreq: 'daily',  priority: 0.7 },
-          { url: '/kaala-official-teaser/'},    // changefreq: 'weekly',  priority: 0.5
-
-        ]
+        cacheTime: 600000
+      });
+      for(var i=0;i<result.length;i++){
+        var postUrl=result[i].title.replace(/ /g,"-");
+        postUrl=postUrl.toLowerCase()
+        sitemap.add({url: '/'+postUrl+'/', changefreq: 'monthly', priority: 0.7});
+      }
+      sitemap.toXML( function (err, xml) {
+          if (err) {
+            return res.status(500).end();
+          }
+          res.header('Content-Type', 'application/xml');
+          res.send( xml );
       });
 
-  sitemap.toXML( function (err, xml) {
-      if (err) {
-        return res.status(500).end();
-      }
-      res.header('Content-Type', 'application/xml');
-      res.send( xml );
-  });
+      });
+
+    });
+
 });
 
 
@@ -74,7 +66,9 @@ app.get("/:title", function(req, res){
       if (err) throw err;
         var db = MongoClient.db("onlinetamilportal");
         console.log(prodtitle);
-        db.collection("post").findOne({"title":prodtitle}, function(err, result) {
+        var regex = new RegExp(["^", prodtitle, "$"].join(""), "i");
+
+        db.collection("post").findOne({"title":regex}, function(err, result) {
           if (err) throw err;
             console.log("Result1: "+result);
         //  db.close();

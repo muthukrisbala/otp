@@ -5,8 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+
 
     <title><%=result.title%></title>
 
@@ -19,27 +18,33 @@
 
     <% var tit=result.title ;
     var url=tit.replace(/ /g,"-");
+    url=url.toLowerCase();
     %>
 
-    <meta property="og:url"                content="http://localhost:8003/<%=url%>" />
+
+    <meta name="title"                      content="<%=result.title%>" />
+    <meta name="description"                content="<%=result.description%>" />
+    <meta name="keywords"                   content="<%=result.keywords%>" />
+
+    <meta property="og:url"                content="http://www.onlinetamilportal.com/<%=url%>" />
     <meta property="og:type"               content="article" />
     <meta property="og:title"              content="<%=result.title%>" />
-    <meta property="og:description"        content="How much does culture influence creative thinking?" />
+    <meta property="og:description"        content="<%=result.description%>" />
     <% if(result.posttype="video") {%>
-      <meta property="og:image"              content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
+      <meta property="og:image"            content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
     <%}else{%>
-      <meta property="og:image"              content="test.com/0.jpg" />
+      <meta property="og:image"            content="<%=result.img%>" />
     <%}%>
 
-    <meta name="twitter:title" content="<%=result.title%>">
-    <meta name="twitter:description" content="DESCRIPTION OF PAGE CONTENT">
+    <meta name="twitter:title"             content="<%=result.title%>">
+    <meta name="twitter:description"       content="<%=result.title%>">
     <% if(result.posttype="video") {%>
-      <meta property="twitter:image"              content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
+      <meta property="twitter:image"       content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
     <%}else{%>
-      <meta property="twitter:image"              content="test.com/0.jpg" />
+      <meta property="twitter:image"       content="<%=result.img%>" />
     <%}%>
-    <meta name="twitter:site" content="@USERNAME">
-    <meta name="twitter:creator" content="@USERNAME">
+    <meta name="twitter:site"              content="@USERNAME">
+    <meta name="twitter:creator"           content="@USERNAME">
 
   </head>
 
@@ -48,25 +53,19 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Online Tamil Portal</a>
+        <a class="navbar-brand" href="http://www.onlinetamilportal.com">Online Tamil Portal</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" href="http://www.onlinetamilportal.com">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
         </div>
@@ -210,7 +209,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <p class="m-0 text-center text-white">Copyright &copy; onlinetamilportal.com 2018</p>
       </div>
       <!-- /.container -->
     </footer>
