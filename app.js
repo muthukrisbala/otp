@@ -2,10 +2,13 @@ var express=require("express");
 var app=express();
 var bodyParser=require("body-parser");
 var compression = require('compression')
+app.set('view cache', true);
 app.use(compression());
+//app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static("public"));
 app.set("view engine","ejs");
 var sm = require('sitemap');
+
 
 
 
@@ -114,7 +117,7 @@ app.get("/", function(req, res){
       if (err) throw err;
         var db = MongoClient.db("onlinetamilportal");
         //console.log(prodtitle);
-        db.collection("post").find({}).toArray( function(err, result){
+        db.collection("post").find({}).limit(9).toArray( function(err, result){
           if (err) throw err;
             console.log("Result Length: "+result.length);
         //  db.close();
