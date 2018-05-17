@@ -79,8 +79,16 @@ app.get("/:title", function(req, res){
           if (err) throw err;
             console.log("Result1: "+result);
         //  db.close();
-          res.render("post",{result:result});
+        db.collection("post").distinct("category", function(err, category) {
+          if (err) throw err;
+            console.log("category: "+category);
+        //  db.close();
+          res.render("post",{result:result,category:category});
         });
+
+
+        });
+
       });
 });
 
