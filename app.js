@@ -1,15 +1,19 @@
 var express=require("express");
 var app=express();
 var bodyParser=require("body-parser");
+var compression = require('compression')
+app.use(compression());
 app.use(express.static("public"));
 app.set("view engine","ejs");
 var sm = require('sitemap');
+
 
 
 var options = {
   useMongoClient: true
 };
 
+//Test comment
 
 app.get("/sitemap.xml", function(req, res) {
 
