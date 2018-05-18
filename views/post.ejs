@@ -38,7 +38,7 @@
     <meta property="og:type"               content="article" />
     <meta property="og:title"              content="<%=result.title%>" />
     <meta property="og:description"        content="<%=result.description%>" />
-    <% if(result.posttype="video") {%>
+    <% if(ptype=="video") {%>
       <meta property="og:image"            content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
     <%}else{%>
       <meta property="og:image"            content="<%=result.img%>" />
@@ -46,7 +46,7 @@
 
     <meta name="twitter:title"             content="<%=result.title%>">
     <meta name="twitter:description"       content="<%=result.title%>">
-    <% if(result.posttype="video") {%>
+    <% if(ptype=="video") {%>
       <meta property="twitter:image"       content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
     <%}else{%>
       <meta property="twitter:image"       content="<%=result.img%>" />
