@@ -61,8 +61,12 @@ app.get("/admin", function(req, res){
         res.render("admin-dashboard");
 });
 
+app.get("/favicon.ico", function(req, res){
+res.end("TST");
+});
 app.get("/:title", function(req, res){
   //  var category=req.params.category;
+  console.log("REQ: "+req.url)
     var prodtitle=req.params.title;
     prodtitle=prodtitle.replace(/-/g,' ');
     console.log(prodtitle);
@@ -82,8 +86,11 @@ app.get("/:title", function(req, res){
         db.collection("post").distinct("category", function(err, category) {
           if (err) throw err;
             console.log("category: "+category);
+            //console.log("App Post Type: "+result.posttype);
         //  db.close();
-          res.render("post",{result:result,category:category});
+
+          res.render("post",{result:result,category:category,ptype:result.posttype});
+
         });
 
 

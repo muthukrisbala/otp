@@ -103,11 +103,20 @@
           <hr>
 <p class="lead">
 
-<% if(result.posttype=="video"){ %>
+<%
+var title=result.title;
+var content=result.content;
+console.log("title: "+title);
+console.log("content: "+content);
+var postytpe=result.posttype;
+console.log("ptype: "+ptype);
+
+if(ptype=="video"){ %>
           <div class="video-container">
              <iframe src="https://www.youtube.com/embed/<%=result.content %>?ecver=2" width="700" height="410" frameborder="0" allowfullscreen></iframe>
          </div>
 <% }else{%>
+  <img src="<%=result.img%>" width="700" height="410"/>
   <%=result.content %>
   <%}%>
             <!-- Preview Image
