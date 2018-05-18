@@ -64,6 +64,59 @@ app.get("/admin", function(req, res){
 app.get("/favicon.ico", function(req, res){
 res.end("TST");
 });
+app.get("/robots.txt", function(req, res){
+res.end("robots.txt");
+});
+
+app.get("/newpost", function(req, res){
+res.render("newpost");
+});
+
+app.get("/createpost", function(req, res){
+  //  var category=req.params.category;
+  console.log("TTIITTLLEE: "+req.query.title);
+  /*var title=req.query.title;
+  var description=req.query.description;
+  var keywords=req.query.keywords;
+  var img=req.query.img;
+  var content=req.query.content;
+  var posttype=req.query.posttype;
+  var publishedby=req.query.publishedby;
+  var publishedon=req.query.publishedon;
+  var category=req.query.category;
+    var prodtitle=req.params.title;
+    prodtitle=prodtitle.replace(/-/g,' ');
+    console.log(prodtitle);*/
+
+    var postobject={};
+    postobject.title=req.query.title;
+    postobject.description=req.query.description;
+    postobject.keywords=req.query.keywords;
+    postobject.img=req.query.img;
+    postobject.content=req.query.content;
+    postobject.posttype=req.query.posttype;
+    postobject.publishedby=req.query.publishedby;
+    postobject.publishedon=req.query.publishedon;
+    postobject.category=req.query.category;
+    console.log("Object: "+postobject);
+
+    var MongoClient = require('mongodb').MongoClient;
+    var url = "mongodb://localhost:27017/onlinetamilportal";
+
+    MongoClient.connect(url, function(err, MongoClient) {
+      if (err) throw err;
+        var db = MongoClient.db("onlinetamilportal");
+
+
+        db.collection("post").insert(postobject,function(err, result) {
+          if (err) throw err;
+            //console.log("Result1: "+result);
+        //  db.close();
+        res.render("postsuccess");
+        });
+      });
+      //res.render("postsuccess");
+});
 app.get("/:title", function(req, res){
   //  var category=req.params.category;
   console.log("REQ: "+req.url)
