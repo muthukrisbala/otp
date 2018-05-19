@@ -9,7 +9,16 @@ app.use(express.static("public"));
 app.set("view engine","ejs");
 var sm = require('sitemap');
 
-
+var redis = require('redis');
+var client = redis.createClient();
+client.on('error', function(err){
+  console.log('Something went wrong ', err)
+});
+client.set('test key', 'my test value', redis.print);
+client.get('test key', function(error, result) {
+  if (error) throw error;
+  console.log('GET result ->', result)
+});
 
 
 var options = {
