@@ -14,11 +14,7 @@ var client = redis.createClient();
 client.on('error', function(err){
   console.log('Something went wrong ', err)
 });
-client.set('test key', 'my test value', redis.print);
-client.get('test key', function(error, result) {
-  if (error) throw error;
-  console.log('GET result ->', result)
-});
+
 
 
 var options = {
@@ -132,33 +128,46 @@ app.get("/:title", function(req, res){
     var prodtitle=req.params.title;
     prodtitle=prodtitle.replace(/-/g,' ');
     console.log(prodtitle);
-    var MongoClient = require('mongodb').MongoClient;
-    var url = "mongodb://localhost:27017/onlinetamilportal";
 
-    MongoClient.connect(url, function(err, MongoClient) {
-      if (err) throw err;
-        var db = MongoClient.db("onlinetamilportal");
-        console.log(prodtitle);
-        var regex = new RegExp(["^", prodtitle, "$"].join(""), "i");
 
-        db.collection("post").findOne({"title":regex}, function(err, result) {
+    client.get(prodtitle, function(error, result) {
+      if (error) throw error;
+      if(result){
+        res.render("post",{result:result});
+      }else{
+        var MongoClient = require('mongodb').MongoClient;
+        var url = "mongodb://localhost:27017/onlinetamilportal";
+
+        MongoClient.connect(url, function(err, MongoClient) {
           if (err) throw err;
-            console.log("Result1: "+result);
-        //  db.close();
-        db.collection("post").distinct("category", function(err, category) {
-          if (err) throw err;
-            console.log("category: "+category);
-            //console.log("App Post Type: "+result.posttype);
-        //  db.close();
+            var db = MongoClient.db("onlinetamilportal");
+            console.log(prodtitle);
+            var regex = new RegExp(["^", prodtitle, "$"].join(""), "i");
 
-          res.render("post",{result:result,category:category,ptype:result.posttype});
+            db.collection("post").findOne({"title":regex}, function(err, result) {
+              if (err) throw err;
+                console.log("Result1: "+result);
+            //  db.close();
+          //  db.collection("post").distinct("category", function(err, category) {
+            //  if (err) throw err;
+          //      console.log("category: "+category);
+                //console.log("App Post Type: "+result.posttype);
+            //  db.close();
+            client.set(prodtitle, JSON.stringify(result), redis.print);
+              res.render("post",{result:result});
 
-        });
+        //    });
 
 
-        });
+            });
 
-      });
+          });
+
+
+      }
+      console.log('GET result ->', result)
+    });
+
 });
 
 app.get("/category/:title", function(req, res){
