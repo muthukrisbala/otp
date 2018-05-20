@@ -23,36 +23,35 @@
     <!-- Custom styles for this template -->
     <link href="http://www.onlinetamilportal.com/css/blog-post.css" rel="stylesheet">
 
-
     <% var tit=result.title ;
-    var url=tit.replace(/ /g,"-");
-    url=url.toLowerCase();
-    %>
+        var url=tit.replace(/ /g,"-");
+        url=url.toLowerCase();
+        %>
 
 
-    <meta name="title"                      content="<%=result.title%>" />
-    <meta name="description"                content="<%=result.description%>" />
-    <meta name="keywords"                   content="<%=result.keywords%>" />
+        <meta name="title"                      content="<%=result.title%>" />
+        <meta name="description"                content="<%=result.description%>" />
+        <meta name="keywords"                   content="<%=result.keywords%>" />
 
-    <meta property="og:url"                content="http://www.onlinetamilportal.com/<%=url%>" />
-    <meta property="og:type"               content="article" />
-    <meta property="og:title"              content="<%=result.title%>" />
-    <meta property="og:description"        content="<%=result.description%>" />
-    <% if(posttype=="video") {%>
-      <meta property="og:image"            content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
-    <%}else{%>
-      <meta property="og:image"            content="<%=result.img%>" />
-    <%}%>
+        <meta property="og:url"                content="http://www.onlinetamilportal.com/<%=url%>" />
+        <meta property="og:type"               content="article" />
+        <meta property="og:title"              content="<%=result.title%>" />
+        <meta property="og:description"        content="<%=result.description%>" />
+        <% if(result.posttype=="video") {%>
+          <meta property="og:image"            content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
+        <%}else{%>
+          <meta property="og:image"            content="<%=result.img%>" />
+        <%}%>
 
-    <meta name="twitter:title"             content="<%=result.title%>">
-    <meta name="twitter:description"       content="<%=result.title%>">
-    <% if(posttype=="video") {%>
-      <meta property="twitter:image"       content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
-    <%}else{%>
-      <meta property="twitter:image"       content="<%=result.img%>" />
-    <%}%>
-    <meta name="twitter:site"              content="@USERNAME">
-    <meta name="twitter:creator"           content="@USERNAME">
+        <meta name="twitter:title"             content="<%=result.title%>">
+        <meta name="twitter:description"       content="<%=result.title%>">
+        <% if(result.posttype=="video") {%>
+          <meta property="twitter:image"       content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
+        <%}else{%>
+          <meta property="twitter:image"       content="<%=result.img%>" />
+        <%}%>
+        <meta name="twitter:site"              content="@USERNAME">
+        <meta name="twitter:creator"           content="@USERNAME">
 
   </head>
 
@@ -111,23 +110,23 @@
           <hr>
 <p class="lead">
 
-<%
-var title=result.title;
-var content=result.content;
-console.log("title: "+title);
-console.log("content: "+content);
-var postytpe;
-postytpe=result.posttype;
-console.log("ptype: "+postytpe);
+  <%
+  var title=result.title;
+  var content=result.content;
+  console.log("title: "+title);
+  console.log("content: "+content);
+  var postytpe;
+  postytpe=result.posttype;
+  console.log("ptype: "+postytpe);
 
-if(postytpe=="video"){ %>
-          <div class="video-container">
-             <iframe src="https://www.youtube.com/embed/<%=result.content %>?ecver=2" width="700" height="410" frameborder="0" allowfullscreen></iframe>
-         </div>
-<% }else{%>
-  <img src="<%=result.img%>" width="700" height="410"/>
-  <%=result.content %>
-  <%}%>
+  if(postytpe=="video"){ %>
+            <div class="video-container">
+               <iframe src="https://www.youtube.com/embed/<%=result.content %>?ecver=2" width="700" height="410" frameborder="0" allowfullscreen></iframe>
+           </div>
+  <% }else{%>
+    <img src="<%=result.img%>" width="700" height="410"/>
+    <%=result.content %>
+    <%}%>
             <!-- Preview Image
               <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
             -->

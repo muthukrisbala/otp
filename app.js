@@ -133,7 +133,11 @@ app.get("/:title", function(req, res){
     client.get(prodtitle, function(error, result) {
       if (error) throw error;
       if(result){
-        res.render("post",{result:result});
+        var resultobj={};
+        resultobj=JSON.parse(result);
+        console.log("Redis-Result: "+resultobj);
+        console.log("redis-title:"+resultobj.title);
+        res.render("post",{result:resultobj});
       }else{
         var MongoClient = require('mongodb').MongoClient;
         var url = "mongodb://localhost:27017/onlinetamilportal";
@@ -148,27 +152,23 @@ app.get("/:title", function(req, res){
               if (err) throw err;
                 console.log("Result1: "+result);
             //  db.close();
-          //  db.collection("post").distinct("category", function(err, category) {
-            //  if (err) throw err;
-          //      console.log("category: "+category);
-                //console.log("App Post Type: "+result.posttype);
-            //  db.close();
-            client.set(prodtitle, JSON.stringify(result), redis.print);
-              res.render("post",{result:result});
+            console.log('GET result ->', result)
+              client.set(prodtitle, JSON.stringify(result), redis.print);
+                res.render("post",{result:result});
 
-        //    });
+          //    });
 
+
+              });
 
             });
 
-          });
 
+        }
+        //console.log('GET result ->', result)
+      });
 
-      }
-      console.log('GET result ->', result)
-    });
-
-});
+  });
 
 app.get("/category/:title", function(req, res){
   //  var category=req.params.category;
