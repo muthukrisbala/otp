@@ -130,7 +130,7 @@ app.get("/:title", function(req, res){
     console.log(prodtitle);
 
 
-    client.get(prodtitle, function(error, result) {
+    client.get("otp_"+prodtitle, function(error, result) {
       if (error) throw error;
       if(result){
         var resultobj={};
@@ -153,7 +153,7 @@ app.get("/:title", function(req, res){
                 console.log("Result1: "+result);
             //  db.close();
             console.log('GET result ->', result)
-              client.set(prodtitle, JSON.stringify(result), redis.print);
+              client.set("otp_"+prodtitle, JSON.stringify(result), redis.print);
                 res.render("post",{result:result});
 
           //    });
