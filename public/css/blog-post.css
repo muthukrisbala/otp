@@ -70,8 +70,8 @@ transition: .4s all;
 -webkit-filter: brightness(75%);
 }
 .youtube-player .play {
-height: 72px;
-width: 72px;
+height: 410px;
+width: 700px;
 left: 50%;
 top: 50%;
 margin-left: -36px;
