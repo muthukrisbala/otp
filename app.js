@@ -43,7 +43,7 @@ app.get("/sitemap.xml", function(req, res) {
         cacheTime: 600000
       });
       for(var i=0;i<result.length;i++){
-        if(typeof (result[i].title)!=="undefined"){
+        if(result[i].title !== null ){
         var postUrl=result[i].title.replace(/ /g,"-");
         postUrl=postUrl.toLowerCase()
         sitemap.add({url: '/'+postUrl+'/', changefreq: 'monthly', priority: 0.7});
