@@ -139,8 +139,8 @@ app.get("/:title", function(req, res){
       if(result){
         var resultobj={};
         resultobj=JSON.parse(result);
-        console.log("Redis-Result: "+resultobj);
-        console.log("redis-title:"+resultobj.title);
+        //console.log("Redis-Result: "+resultobj);
+        //console.log("redis-title:"+resultobj.title);
         res.render("post",{result:resultobj});
       }else{
         var MongoClient = require('mongodb').MongoClient;
@@ -188,7 +188,7 @@ app.get("/category/:title", function(req, res){
         console.log(prodtitle);
         var regex = new RegExp(["^", prodtitle, "$"].join(""), "i");
 
-        db.collection("post").find({"category":regex}).toArray(function(err, result) {
+        db.collection("post").find({"category":regex}).sort({publishedon:-1}).limit(18).toArray(function(err, result) {
           if (err) throw err;
             console.log("Result1: "+result);
         //  db.close();
