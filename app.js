@@ -216,8 +216,27 @@ app.get("/", function(req, res){
       });
 });
 
+app.get("/page/:count", function(req, res){
+  //  var category=req.params.category;
+    var cnt=req.params.count;
+    cnt=cnt-1;
+    cnt=cnt*9;
+    console.log("cnt: "+cnt);
+    var MongoClient = require('mongodb').MongoClient;
+    var url = "mongodb://localhost:27017/onlinetamilportal";
 
-
+    MongoClient.connect(url, function(err, MongoClient) {
+      if (err) throw err;
+        var db = MongoClient.db("onlinetamilportal");
+        //console.log(prodtitle);
+        db.collection("post").find({}).sort({publishedon:-1}).skip(cnt).limit(9).toArray( function(err, result){
+          if (err) throw err;
+            console.log("Result Length: "+result.length);
+        //  db.close();
+          res.render("home",{result:result});
+        });
+      });
+});
 
 app.get("*", function(req, res){
     res.send("404");
