@@ -21,7 +21,14 @@ var options = {
   useMongoClient: true
 };
 
-//Test comment
+
+app.get("/robots.txt", function(req, res) {
+	
+
+res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /newpost\nsitemap: http://www.onlinetamilportal.com/sitemap.xml");	
+	
+});
 
 app.get("/sitemap.xml", function(req, res) {
 
