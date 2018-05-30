@@ -23,11 +23,11 @@ var options = {
 
 
 app.get("/robots.txt", function(req, res) {
-	
+
 
 res.type('text/plain');
-    res.send("User-agent: *\nDisallow: /newpost\nsitemap: http://www.onlinetamilportal.com/sitemap.xml");	
-	
+    res.send("User-agent: *\nDisallow: /newpost\nsitemap: http://www.onlinetamilportal.com/sitemap.xml");
+
 });
 
 app.get("/sitemap.xml", function(req, res) {
@@ -196,6 +196,29 @@ app.get("/category/:title", function(req, res){
         var regex = new RegExp(["^", prodtitle, "$"].join(""), "i");
 
         db.collection("post").find({"category":regex}).sort({publishedon:-1}).limit(18).toArray(function(err, result) {
+          if (err) throw err;
+            console.log("Result1: "+result);
+        //  db.close();
+          res.render("home",{result:result});
+        });
+      });
+});
+
+app.get("/serial/:serialname", function(req, res){
+  //  var category=req.params.category;
+    var prodtitle=req.params.serialname;
+    prodtitle=prodtitle.replace(/-/g,' ');
+    console.log(prodtitle);
+    var MongoClient = require('mongodb').MongoClient;
+    var url = "mongodb://localhost:27017/onlinetamilportal";
+
+    MongoClient.connect(url, function(err, MongoClient) {
+      if (err) throw err;
+        var db = MongoClient.db("onlinetamilportal");
+        console.log(prodtitle);
+        var regex = new RegExp(["^", prodtitle, "$"].join(""), "i");
+
+        db.collection("post").find({"serialname":regex}).sort({publishedon:-1}).limit(21).toArray(function(err, result) {
           if (err) throw err;
             console.log("Result1: "+result);
         //  db.close();
