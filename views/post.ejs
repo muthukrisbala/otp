@@ -165,6 +165,37 @@
           </div>
 
 -->
+
+<h3>Past Episodes</h3>
+ <div class="row">
+ 
+ <P>
+        <% for(var i=0;i<pastepisodes.length;i++){
+          var tit=pastepisodes[i].title ;
+          var url=tit.replace(/ /g,"-");
+          url="http://www.onlinetamilportal.com/"+url.toLowerCase()
+
+          %>
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <% if(pastepisodes[i].posttype=="video"){%>
+              <a href="<%=url%>"><img class="card-img-top" src="https://img.youtube.com/vi/<%=pastepisodes[i].content%>/0.jpg" alt="Card image cap"></a>
+
+            <%}else{%>
+              <a href="<%=url%>"><img class="card-img-top" src="<%=pastepisodes[i].img%>" alt="Card image cap"></a>
+
+            <%}%>
+            <div class="card-body">
+              <h4 class="card-title">
+
+                <a href="<%=url%>"><h4 class="card-title"><%=pastepisodes[i].title %></h4></a>
+              </h4>
+              
+            </div>
+          </div>
+        </div>
+        <%}%>
+      </div>
         </div>
 
         <!-- Sidebar Widgets Column -->

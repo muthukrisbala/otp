@@ -23,11 +23,11 @@ var options = {
 
 
 app.get("/robots.txt", function(req, res) {
-
+	
 
 res.type('text/plain');
-    res.send("User-agent: *\nDisallow: /newpost\nsitemap: http://www.onlinetamilportal.com/sitemap.xml");
-
+    res.send("User-agent: *\nDisallow: /newpost\nsitemap: http://www.onlinetamilportal.com/sitemap.xml");	
+	
 });
 
 app.get("/sitemap.xml", function(req, res) {
@@ -141,7 +141,7 @@ app.get("/:title", function(req, res){
     console.log(prodtitle);
 
 
-    client.get("otp_"+prodtitle, function(error, result) {
+    /*client.get("otp_"+prodtitle, function(error, result) {
       if (error) throw error;
       if(result){
         var resultobj={};
@@ -150,8 +150,10 @@ app.get("/:title", function(req, res){
         //console.log("redis-title:"+resultobj.title);
         res.render("post",{result:resultobj});
       }else{
+		  */
         var MongoClient = require('mongodb').MongoClient;
-        var url = "mongodb://localhost:27017/onlinetamilportal";
+        //var url = "mongodb://localhost:27017/onlinetamilportal";
+		 var url = "mongodb://35.200.227.234:27017/onlinetamilportal";
 
         MongoClient.connect(url, function(err, MongoClient) {
           if (err) throw err;
@@ -165,9 +167,21 @@ app.get("/:title", function(req, res){
             //  db.close();
             console.log('GET result ->', result)
               client.set("otp_"+prodtitle, JSON.stringify(result), redis.print);
-                res.render("post",{result:result});
+			  
 
-          //    });
+               // res.render("post",{result:result});
+
+          db.collection("post").find({"serialname":result.serialname, "episode": { $gt: result.episode-4 }} ).limit(3).toArray( function(err, pastepisodes) {
+              if (err) throw err;
+                console.log("Result1: "+pastepisodes);
+            //  db.close();
+            console.log('GET result ->', pastepisodes)
+              //client.set("otp_"+prodtitle, JSON.stringify(result), redis.print);			  
+
+                res.render("post",{result:result,pastepisodes:pastepisodes});
+
+         
+              });
 
 
               });
@@ -175,9 +189,9 @@ app.get("/:title", function(req, res){
             });
 
 
-        }
+       /* }
         //console.log('GET result ->', result)
-      });
+      });*/
 
   });
 
@@ -187,7 +201,8 @@ app.get("/category/:title", function(req, res){
     prodtitle=prodtitle.replace(/-/g,' ');
     console.log(prodtitle);
     var MongoClient = require('mongodb').MongoClient;
-    var url = "mongodb://localhost:27017/onlinetamilportal";
+    //var url = "mongodb://localhost:27017/onlinetamilportal";
+	var url = "mongodb://35.200.227.234:27017/onlinetamilportal";
 
     MongoClient.connect(url, function(err, MongoClient) {
       if (err) throw err;
@@ -204,34 +219,12 @@ app.get("/category/:title", function(req, res){
       });
 });
 
-app.get("/serial/:serialname", function(req, res){
-  //  var category=req.params.category;
-    var prodtitle=req.params.serialname;
-    prodtitle=prodtitle.replace(/-/g,' ');
-    console.log(prodtitle);
-    var MongoClient = require('mongodb').MongoClient;
-    var url = "mongodb://localhost:27017/onlinetamilportal";
-
-    MongoClient.connect(url, function(err, MongoClient) {
-      if (err) throw err;
-        var db = MongoClient.db("onlinetamilportal");
-        console.log(prodtitle);
-        var regex = new RegExp(["^", prodtitle, "$"].join(""), "i");
-
-        db.collection("post").find({"serialname":regex}).sort({publishedon:-1}).limit(21).toArray(function(err, result) {
-          if (err) throw err;
-            console.log("Result1: "+result);
-        //  db.close();
-          res.render("home",{result:result});
-        });
-      });
-});
-
 app.get("/", function(req, res){
   //  var category=req.params.category;
 
     var MongoClient = require('mongodb').MongoClient;
-    var url = "mongodb://localhost:27017/onlinetamilportal";
+    //var url = "mongodb://localhost:27017/onlinetamilportal";
+	var url = "mongodb://35.200.227.234:27017/onlinetamilportal";
 
     MongoClient.connect(url, function(err, MongoClient) {
       if (err) throw err;
