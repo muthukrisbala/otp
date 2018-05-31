@@ -141,7 +141,7 @@ app.get("/:title", function(req, res){
     console.log(prodtitle);
 
 
-    client.get("otp_"+prodtitle, function(error, result) {
+    /*client.get("otp_"+prodtitle, function(error, result) {
       if (error) throw error;
       if(result){
         var resultobj={};
@@ -150,6 +150,7 @@ app.get("/:title", function(req, res){
         //console.log("redis-title:"+resultobj.title);
         res.render("post",{result:resultobj});
       }else{
+		  */
 		  
         var MongoClient = require('mongodb').MongoClient;
         //var url = "mongodb://localhost:27017/onlinetamilportal";
@@ -189,9 +190,10 @@ app.get("/:title", function(req, res){
             });
 
 
-        }
+       /* }
         //console.log('GET result ->', result)
       });
+	  */
 
   });
 
