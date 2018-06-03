@@ -221,6 +221,30 @@ app.get("/category/:title", function(req, res){
       });
 });
 
+app.get("/listview/:title", function(req, res){
+  //  var category=req.params.category;
+    var prodtitle=req.params.title;
+    prodtitle=prodtitle.replace(/-/g,' ');
+    console.log(prodtitle);
+    var MongoClient = require('mongodb').MongoClient;
+    //var url = "mongodb://localhost:27017/onlinetamilportal";
+	var url = "mongodb://35.200.227.234:27017/onlinetamilportal";
+
+    MongoClient.connect(url, function(err, MongoClient) {
+      if (err) throw err;
+        var db = MongoClient.db("onlinetamilportal");
+        console.log(prodtitle);
+        var regex = new RegExp(["^", prodtitle, "$"].join(""), "i");
+
+        db.collection("post").find({"serialname":regex}).sort({publishedon:-1}).limit(50).toArray(function(err, result) {
+          if (err) throw err;
+            console.log("Result1: "+result);
+        //  db.close();
+          res.render("postlistview",{result:result});
+        });
+      });
+});
+
 
 app.get("/serial/:title", function(req, res){
   //  var category=req.params.category;
