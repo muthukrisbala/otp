@@ -48,10 +48,7 @@
         <meta name="twitter:description"       content="<%=result.title%>">
         <% if(result.posttype=="video") {%>
           <meta property="twitter:image"       content="https://img.youtube.com/vi/<%=result.content%>/0.jpg" />
-		  <meta itemprop="title" content="<%=result.title%>"/>
-		<meta itemprop="description" content="<%=result.description%>"/>
-		<meta itemprop="thumbnailURL" content="https://i.ytimg.com/vi/<%=result.content%>/hqdefault.jpg" />
-		<meta itemprop="embedURL" content="https://youtube.googleapis.com/v/<%=result.content%>" />
+		
         <%}else{%>
           <meta property="twitter:image"       content="<%=result.img%>" />
         <%}%>
