@@ -53,6 +53,11 @@
         <%}%>
         <meta name="twitter:site"              content="@USERNAME">
         <meta name="twitter:creator"           content="@USERNAME">
+		
+		<meta itemprop="title" content="<%=result.title%>"/>
+		<meta itemprop="description" content="<%=result.description%>"/>
+		<meta itemprop="thumbnailURL" content="https://i.ytimg.com/vi/<%=result.content%>/hqdefault.jpg" />
+		<meta itemprop="embedURL" content="https://youtube.googleapis.com/v/<%=result.img%>" />
 
   </head>
 
