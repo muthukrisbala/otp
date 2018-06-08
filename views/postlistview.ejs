@@ -73,6 +73,16 @@
 
           <hr>
 <p class="lead">
+<script type="application/ld+json">
+
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "http://www.onlinetamilportal.com",
+  "logo": "http://static.onlinetamilportal.com/logo.jpg"
+}
+
+</script>
 
   
             <!-- Preview Image
@@ -120,7 +130,7 @@
           url="http://www.onlinetamilportal.com/"+url.toLowerCase()
 
           %>
-  <tr><td><%=tit%></td><td><a href=<%=url %> >click here </a></td></tr>
+  <tr><td><%=tit%></td><td>Episode-<%=result[i].episode%></td><td><a href=<%=url %> >click here </a></td></tr>
   
   
         <%}%>
