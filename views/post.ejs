@@ -131,7 +131,7 @@
   postytpe=result.posttype;
   console.log("ptype: "+postytpe);
 
-  if(result.posttype=="video"){ %>
+  if(postytpe=="video"){ %>
             <div class="youtube-player" data-id="<%=result.content %>"></div>
   <% }else{%>
     <img src="<%=result.img%>" width="700" height="410"/>
@@ -190,7 +190,7 @@
 </script>
 		  
 		  
-	<% if(pastepisodes[i].posttype=="video"){%>
+	<% if(result.posttype=="video"){%>
 		<script type="application/ld+json">
 		{
 		 "@context": "http://schema.org/",
