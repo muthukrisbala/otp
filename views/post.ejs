@@ -149,17 +149,62 @@
           <!-- Post Content -->
 
           <hr>
-		  	  <script type="application/ld+json">
+	<script type="application/ld+json">
 {
- "@context": "http://schema.org/",
- "@type": "VideoObject",
- "name": "<%=result.title%>",
- "description": "<%=result.description%>",
- "thumbnailURL": "https://img.youtube.com/vi/<%=result.content%>/0.jpg",
- "UploadDate": "<%=uploaddatearr[0]%>"
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "item": {
+      "@id": "http://www.onlinetamilportal.com/",
+      "name": "Home"
+      
+    }
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "item": {
+      "@id": "http://www.onlinetamilportal.com/category/<%=result.category%>",
+      "name": "<%=result.category%>"
+      
+    }
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "item": {
+      "@id": "http://wwww.onlinetamilportal.com/serial/<%=result.serialname%>",
+      "name": "<%=result.serialname%>"
+      
+    }
+  },{
+    "@type": "ListItem",
+    "position": 4,
+    "item": {
+      "@id": "http://www.onlinetamilportal.com/<%=url%>",
+      "name": "<%=result.title%>"
+      
+    }
+  }]
+}
+</script>
+		  
+		  
+	<% if(pastepisodes[i].posttype=="video"){%>
+		<script type="application/ld+json">
+		{
+		 "@context": "http://schema.org/",
+		 "@type": "VideoObject",
+		 "name": "<%=result.title%>",
+		 "description": "<%=result.description%>",
+		 "thumbnailURL": "https://img.youtube.com/vi/<%=result.content%>/0.jpg",
+		 "UploadDate": "<%=uploaddatearr[0]%>"
+		 
+		 } 
  
- }
- </script>
+		</script>
+
+	<% } %>
 <!--
 
           <div class="card my-4">
