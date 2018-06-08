@@ -131,7 +131,7 @@
   postytpe=result.posttype;
   console.log("ptype: "+postytpe);
 
-  if(postytpe=="video"){ %>
+  if(result.posttype=="video"){ %>
             <div class="youtube-player" data-id="<%=result.content %>"></div>
   <% }else{%>
     <img src="<%=result.img%>" width="700" height="410"/>
