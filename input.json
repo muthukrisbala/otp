@@ -154,3 +154,8 @@ publishedon:"2018-05-18T01:30:15.321Z",
 category:"ipl"
 },
 ])
+
+
+
+
+db.post.updateOne({ "title" :"Sri Divya Photo Gallery" },{ $set: { "content" : "<TABLE class=\"table table-striped\" ><TR><TD><img src=\"https://pbs.twimg.com/media/DfPGEPvV4AAjzoR.jpg\"></img></TD></TR><TR><TD><img src=\"https://pbs.twimg.com/media/DfPGEPpUcAEDV6g.jpg\"/></TD></TR> <TR><TD><img src=\"https://pbs.twimg.com/media/DellB9cUYAA0oKa.jpg\"/></TD></TR><TR><TD><img src=\"https://pbs.twimg.com/media/DcmD5wEU0AEPpMm.jpg:large\"/></TD></TR></TABLE>" } } )
