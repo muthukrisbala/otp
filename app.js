@@ -314,6 +314,9 @@ app.get("/page/:count", function(req, res){
 });
 
 app.get("*", function(req, res){
+	
+	res.status(404);
+	
      var MongoClient = require('mongodb').MongoClient;
     //var url = "mongodb://localhost:27017/onlinetamilportal";
 	var url = "mongodb://35.200.227.234:27017/onlinetamilportal";
@@ -326,7 +329,7 @@ app.get("*", function(req, res){
           if (err) throw err;
             console.log("Result Length: "+result.length);
         //  db.close();
-          res.render("home",{result:result});
+          res.render("404",{result:result});
         });
       });
 });
