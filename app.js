@@ -149,7 +149,7 @@ app.get("/search", function(req, res){
         console.log(searchterm);
         var regex = new RegExp(["^", searchterm, "$"].join(""), "i");
 
-        db.collection("post").find({ $text: { $search: regex } }).sort({publishedon:-1}).limit(20).toArray(function(err, result) {
+        db.collection("post").find({ $text: { $search: searchterm } }).sort({publishedon:-1}).limit(20).toArray(function(err, result) {
           if (err) throw err;
             console.log("Search Result Count: "+result);
         //  db.close();
@@ -296,29 +296,7 @@ app.get("/serial/:title", function(req, res){
       });
 });
 
-app.get("/search", function(req, res){
-  //  var category=req.params.category;
-    var searchterm=req.query.searchterm;
-    //serchterm=prodtitle.replace(/-/g,' ');
-    console.log(searchterm);
-    var MongoClient = require('mongodb').MongoClient;
-    //var url = "mongodb://localhost:27017/onlinetamilportal";
-	var url = "mongodb://35.200.227.234:27017/onlinetamilportal";
 
-    MongoClient.connect(url, function(err, MongoClient) {
-      if (err) throw err;
-        var db = MongoClient.db("onlinetamilportal");
-        console.log(searchterm);
-        var regex = new RegExp(["^", searchterm, "$"].join(""), "i");
-
-        db.collection("post").find({"title":regex}).sort({publishedon:-1}).limit(20).toArray(function(err, result) {
-          if (err) throw err;
-            console.log("Result1: "+result);
-        //  db.close();
-          res.render("home",{result:result});
-        });
-      });
-});
 
 
 app.get("/", function(req, res){
