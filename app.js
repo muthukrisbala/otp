@@ -149,7 +149,7 @@ app.get("/search", function(req, res){
         console.log(searchterm);
         var regex = new RegExp(["^", searchterm, "$"].join(""), "i");
 
-        db.collection("post").find({ $text: { $search: searchterm } }).sort({publishedon:-1}).limit(20).toArray(function(err, result) {
+        db.collection("post").find({ $text: { $search: searchterm } }).sort({publishedon:-1}).limit(21).toArray(function(err, result) {
           if (err) throw err;
             console.log("Search Result Count: "+result);
         //  db.close();
@@ -238,7 +238,7 @@ app.get("/category/:title", function(req, res){
         console.log(prodtitle);
         var regex = new RegExp(["^", prodtitle, "$"].join(""), "i");
 
-        db.collection("post").find({"category":regex}).sort({publishedon:-1}).limit(20).toArray(function(err, result) {
+        db.collection("post").find({"category":regex}).sort({publishedon:-1}).limit(21).toArray(function(err, result) {
           if (err) throw err;
             console.log("Result1: "+result);
         //  db.close();
@@ -287,7 +287,7 @@ app.get("/serial/:title", function(req, res){
         console.log(prodtitle);
         var regex = new RegExp(["^", prodtitle, "$"].join(""), "i");
 
-        db.collection("post").find({"serialname":regex}).sort({publishedon:-1}).limit(20).toArray(function(err, result) {
+        db.collection("post").find({"serialname":regex}).sort({publishedon:-1}).limit(21).toArray(function(err, result) {
           if (err) throw err;
             console.log("Result1: "+result);
         //  db.close();
@@ -310,7 +310,7 @@ app.get("/", function(req, res){
       if (err) throw err;
         var db = MongoClient.db("onlinetamilportal");
         //console.log(prodtitle);
-        db.collection("post").find({}).sort({publishedon:-1}).limit(16).toArray( function(err, result){
+        db.collection("post").find({}).sort({publishedon:-1}).limit(18).toArray( function(err, result){
           if (err) throw err;
             console.log("Result Length: "+result.length);
         //  db.close();
