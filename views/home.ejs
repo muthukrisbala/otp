@@ -86,7 +86,7 @@
           url="http://www.onlinetamilportal.com/"+url.toLowerCase()
 
           %>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="col-lg-3 col-sm-4 portfolio-item">
           <div class="card h-100">
             <% if(result[i].posttype=="video"){%>
               <a href="<%=url%>"><img class="card-img-top" src="https://img.youtube.com/vi/<%=result[i].content%>/0.jpg" alt="Card image cap"></a>
@@ -96,12 +96,11 @@
 
             <%}%>
             <div class="card-body">
-              <h4 class="card-title">
+              <h5 class="card-title">
 
-                <a href="<%=url%>"><h3 class="card-title"><%=result[i].title %></h3></a>
-              </h4>
-              <p class="card-text">  Posted on <%=result[i].publishedon%></a> by
-                <a href=""><%=result[i].publishedby%></a></p>
+                <a href="<%=url%>"><h4 class="card-title"><%=result[i].title %></h4></a>
+              </h5>
+              <p class="card-text">  Posted on <%=result[i].publishedon%></a></p>
             </div>
           </div>
         </div>
