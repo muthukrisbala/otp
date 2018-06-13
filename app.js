@@ -133,6 +133,32 @@ app.get("/createpost", function(req, res){
       });
       //res.render("postsuccess");
 });
+
+app.get("/search", function(req, res){
+  //  var category=req.params.category;
+    var searchterm=req.query.searchterm;
+    //serchterm=prodtitle.replace(/-/g,' ');
+    console.log(searchterm);
+    var MongoClient = require('mongodb').MongoClient;
+    //var url = "mongodb://localhost:27017/onlinetamilportal";
+	var url = "mongodb://35.200.227.234:27017/onlinetamilportal";
+
+    MongoClient.connect(url, function(err, MongoClient) {
+      if (err) throw err;
+        var db = MongoClient.db("onlinetamilportal");
+        console.log(searchterm);
+        var regex = new RegExp(["^", searchterm, "$"].join(""), "i");
+
+        db.collection("post").find({"title":regex}).sort({publishedon:-1}).limit(18).toArray(function(err, result) {
+          if (err) throw err;
+            console.log("Result1: "+result);
+        //  db.close();
+          res.render("home",{result:result});
+        });
+      });
+});
+
+
 app.get("/:title", function(req, res){
   //  var category=req.params.category;
   console.log("REQ: "+req.url)
