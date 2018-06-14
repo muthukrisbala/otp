@@ -124,7 +124,7 @@
   var title=result.title;
   var content=result.content;
   var uploaddate=result.publishedon;
-  var uploaddatearr=uploaddate.split("T");
+  
   console.log("title: "+title);
   console.log("content: "+content);
   var postytpe;
@@ -207,7 +207,7 @@
 		 "name": "<%=result.title%>",
 		 "description": "<%=result.description%>",
 		 "thumbnailURL": "https://img.youtube.com/vi/<%=result.content%>/0.jpg",
-		 "UploadDate": "<%=uploaddatearr[0]%>"
+		 "UploadDate": "<%=uploaddate%>"
 		 
 		 } 
  
