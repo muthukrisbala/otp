@@ -112,7 +112,7 @@ app.get("/createpost", function(req, res){
     postobject.content=req.query.content;
     postobject.posttype=req.query.posttype;
     postobject.publishedby=req.query.publishedby;
-    postobject.publishedon=req.query.publishedon;
+    postobject.publishedon=new Date();
     postobject.category=req.query.category;
     console.log("Object: "+postobject);
 
